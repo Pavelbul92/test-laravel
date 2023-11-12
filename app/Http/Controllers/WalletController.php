@@ -24,9 +24,7 @@ class WalletController extends Controller
         $user = auth()->user();
         $wallet = $this->walletRepository->getById($user->wallet->id);
 
-
         return Inertia::render('Wallet/Index', [
-            'wallet' => $wallet,
             'operationsPaginated' => $this->walletRepository->getOperationsList(new WalletOperationsListParamsData(
                 orderBy: !empty($request->get('orderBy')) ? OrderByColumnType::from($request->get('orderBy')) : OrderByColumnType::DATE,
                 sortBy: !empty($request->get('sortBy')) ? SortByType::from($request->get('sortBy')) : SortByType::DESC,

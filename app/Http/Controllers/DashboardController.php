@@ -25,6 +25,7 @@ class DashboardController extends Controller
         $wallet = $this->walletRepository->getById($user->wallet->id);
 
         return Inertia::render('Dashboard', [
+            'wallet' => $wallet,
             'operationsPaginated' => $this->walletRepository->getOperationsList(new WalletOperationsListParamsData(
                 filter: new WalletOperationsListFilterParams(
                     walletID: $wallet->id
